@@ -3,7 +3,7 @@ import Checker from '../Checker/Checker';
 import {even, odd} from '../../util/even';
 import './Board.css';
 
-function Board({checkers, onSquareClick}){
+function Board({positions, onSquareClick}){
     let squares = [];
 
     for (let row=0; row<8; row++){
@@ -11,8 +11,7 @@ function Board({checkers, onSquareClick}){
 
             let squareIsDark = (even(row) && odd(col)) || (odd(row) && even(col));
             let style = squareIsDark ? {backgroundColor: "black"} : {};
-
-            let checker = checkers[`${row} ${col}`];
+            let checker = positions[row][col];
 
             squares.push((
                 <div
@@ -21,7 +20,7 @@ function Board({checkers, onSquareClick}){
                     style={style}
                     onClick={() => onSquareClick(row, col)}
                 >
-                    {checker ? <Checker {...checker}/> : null}
+                    {checker ? <Checker onClick={()=>console.log(`Checker at (${row}, ${col}) clicked!`)} {...checker}/> : null}
                 </div>
             ));
         }
