@@ -1,6 +1,7 @@
 import React from 'react';
-import './Checker.css'
-import { COLOR_DARK, COLOR_LIGHT } from '../../constants/constants';
+import { FaCrown } from 'react-icons/fa';
+import './Checker.css';
+import { COLOR_DARK, COLOR_LIGHT, RANK_KING, RANK_MAN } from '../../constants/constants';
 
 const LIGHT = "#ffffff";
 const DARK = "#ff1f05";
@@ -18,14 +19,13 @@ function Checker({color, rank, onClick}){
             throw new Error("Expected a color parameter for checker");
     }
 
-    // TODO check the rank of the checker
-
     return (
         <div
             className='Checker-Checker'
             style={{background: colorHex}}
             onClick={onClick}
         >
+        {rank === RANK_KING ? <FaCrown className="Checker-Icon"/> : null}
         </div>
     );
 }

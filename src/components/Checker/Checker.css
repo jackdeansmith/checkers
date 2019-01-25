@@ -2,4 +2,13 @@
     border-radius: 50%;
     height: 50%;
     width: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Checker-Icon {
+    height: 70%;
+    width: 70%;
 }

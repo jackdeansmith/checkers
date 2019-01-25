@@ -3,15 +3,30 @@ import Checker from '../Checker/Checker';
 import {even, odd} from '../../util/even';
 import './Board.css';
 
-function Board({positions, onSquareClick}){
+function Board({positions, onSquareClick, selected, hilighted}){
     let squares = [];
 
     for (let row=0; row<8; row++){
         for (let col=0; col<8; col++){
 
-            let squareIsDark = (even(row) && odd(col)) || (odd(row) && even(col));
-            let style = squareIsDark ? {backgroundColor: "black"} : {};
-            let checker = positions[row][col];
+            const squareIsDark = (even(row) && odd(col)) || (odd(row) && even(col));
+            const shadingStyle = squareIsDark ? {backgroundColor: "black"} : {};
+
+            const isSelected = selected && selected.row === row && selected.col === col;
+            const isHilighted = hilighted.filter((pos) => pos.row === row && pos.col === col).length;
+
+
+            let borderStyle = {}
+            if(isSelected){
+                borderStyle = {border: "solid yellow 2px"};
+            }
+            else if(isHilighted){
+                borderStyle = {border: "solid hotpink 2px"};
+            }
+
+            const style = {...shadingStyle, ...borderStyle};
+
+            const checker = positions[row][col];
 
             squares.push((
                 <div
